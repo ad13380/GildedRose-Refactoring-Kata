@@ -4,10 +4,9 @@ source "https://rubygems.org"
 
 git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
-
-group :development, :test do
+group :test do
   gem 'rspec'
   gem 'rubocop'
-  gem 'simplecov'
-  gem 'simplecov-console'
+  gem 'simplecov', require: false, group: :test
+  gem 'simplecov-console', require: false, group: :test
 end
