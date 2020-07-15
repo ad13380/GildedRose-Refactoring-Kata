@@ -18,6 +18,30 @@ describe GildedRose do
     end
   end
 
+  describe '#Regular Item' do
+    before(:each) do
+      @items = [Item.new('A regular Item', 2, 10)]
+      GildedRose.new(@items).update_quality
+    end
+
+    describe 'quality' do
+      it 'decreases by 1 each day before sell_in value' do
+        GildedRose.new(@items).update_quality
+        expect(@items[0].quality).to eq 8
+      end
+
+      it 'decreases by 2 each day after sell_in value' do
+        3.times { GildedRose.new(@items).update_quality }
+        expect(@items[0].quality).to eq 4
+      end
+
+      it 'has a minimum value of 0' do
+        11.times { GildedRose.new(@items).update_quality }
+        expect(@items[0].quality).to eq 0
+      end
+    end
+  end
+
   describe '#Sulfuras' do
     before(:each) do
       @items = [Item.new('Sulfuras, Hand of Ragnaros', 10, 10)]
@@ -53,7 +77,7 @@ describe GildedRose do
         expect(@items[0].quality).to eq 16
       end
 
-      it 'has a mximum value of 50' do
+      it 'has a maximum value of 50' do
         51.times { GildedRose.new(@items).update_quality }
         expect(@items[0].quality).to eq 50
       end
