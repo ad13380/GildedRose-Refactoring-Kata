@@ -5,46 +5,45 @@ require 'item'
 
 describe GildedRose do
   describe '#update_quality' do
+    before(:each) do
+      @items = [Item.new('foo', 10, 0)]
+      GildedRose.new(@items).update_quality
+    end
+
     it 'does not change the name' do
-      items = [Item.new('foo', 0, 0)]
-      GildedRose.new(items).update_quality
-      expect(items[0].name).to eq 'foo'
+      expect(@items[0].name).to eq 'foo'
     end
 
     it 'decreases sell_in value by 1' do
-      items = [Item.new('foo', 10, 0)]
-      GildedRose.new(items).update_quality
-      expect(items[0].sell_in).to eq 9
+      expect(@items[0].sell_in).to eq 9
     end
   end
 
   describe '#Regular Item' do
-    before(:each) do
-      @items = [Item.new('A regular Item', 2, 10)]
-      GildedRose.new(@items).update_quality
-    end
-
     describe 'quality' do
       it 'decreases by 1 each day before sell_in value' do
-        GildedRose.new(@items).update_quality
-        expect(@items[0].quality).to eq 8
+        items = [Item.new('A regular Item', 2, 10)]
+        GildedRose.new(items).update_quality
+        expect(items[0].quality).to eq 9
       end
 
       it 'decreases by 2 each day after sell_in value' do
-        3.times { GildedRose.new(@items).update_quality }
-        expect(@items[0].quality).to eq 4
+        items = [Item.new('A regular Item', 0, 10)]
+        GildedRose.new(items).update_quality
+        expect(items[0].quality).to eq 8
       end
 
       it 'has a minimum value of 0' do
-        11.times { GildedRose.new(@items).update_quality }
-        expect(@items[0].quality).to eq 0
+        items = [Item.new('A regular Item', 0, 10)]
+        6.times { GildedRose.new(items).update_quality }
+        expect(items[0].quality).to eq 0
       end
     end
   end
 
   describe '#Sulfuras' do
     before(:each) do
-      @items = [Item.new('Sulfuras, Hand of Ragnaros', 10, 10)]
+      @items = [Item.new('Sulfuras, Hand of Ragnaros', 2, 10)]
       GildedRose.new(@items).update_quality
     end
 
@@ -61,25 +60,79 @@ describe GildedRose do
   end
 
   describe '#Aged Brie' do
-    before(:each) do
-      @items = [Item.new('Aged Brie', 2, 10)]
-      GildedRose.new(@items).update_quality
-    end
-
     describe 'quality' do
       it 'increases by 1 each day before sell_in value' do
-        GildedRose.new(@items).update_quality
-        expect(@items[0].quality).to eq 12
+        items = [Item.new('Aged Brie', 2, 0)]
+        GildedRose.new(items).update_quality
+        expect(items[0].quality).to eq 1
       end
 
       it 'increases by 2 each day after sell_in value' do
-        3.times { GildedRose.new(@items).update_quality }
-        expect(@items[0].quality).to eq 16
+        items = [Item.new('Aged Brie', 0, 0)]
+        4.times { GildedRose.new(items).update_quality }
+        expect(items[0].quality).to eq 8
       end
 
       it 'has a maximum value of 50' do
-        51.times { GildedRose.new(@items).update_quality }
-        expect(@items[0].quality).to eq 50
+        items = [Item.new('Aged Brie', 0, 0)]
+        26.times { GildedRose.new(items).update_quality }
+        expect(items[0].quality).to eq 50
+      end
+    end
+  end
+
+  describe '#Backstage passes to a TAFKAL80ETC concert' do
+    describe 'quality' do
+      it 'increases by 1 each day when sell_in value is 11 or more' do
+        items = [Item.new('Backstage passes to a TAFKAL80ETC concert', 12, 0)]
+        GildedRose.new(items).update_quality
+        expect(items[0].quality).to eq 1
+      end
+
+      it 'increases by 2 each day when sell_in value is between 5 and 11' do
+        items = [Item.new('Backstage passes to a TAFKAL80ETC concert', 7, 0)]
+        GildedRose.new(items).update_quality
+        expect(items[0].quality).to eq 2
+      end
+
+      it 'increases by 3 each day when sell_in value is 5 or less' do
+        items = [Item.new('Backstage passes to a TAFKAL80ETC concert', 4, 0)]
+        GildedRose.new(items).update_quality
+        expect(items[0].quality).to eq 3
+      end
+
+      it 'has a maximum value of 50' do
+        items = [Item.new('Backstage passes to a TAFKAL80ETC concert', 4, 50)]
+        GildedRose.new(items).update_quality 
+        expect(items[0].quality).to eq 50
+      end
+
+      it 'is set to 0 when sell_in value is 0 or less' do
+        items = [Item.new('Backstage passes to a TAFKAL80ETC concert', 2, 10)]
+        3.times { GildedRose.new(items).update_quality }
+        expect(items[0].quality).to eq 0
+      end
+    end
+  end
+
+  describe '#Conjured' do
+    xdescribe 'quality' do
+      it 'decreases by 2 each day before sell_in value' do
+        items = [Item.new('Conjured', 2, 10)]
+        GildedRose.new(items).update_quality
+        expect(items[0].quality).to eq 8
+      end
+
+      it 'decreases by 4 each day after sell_in value' do
+        items = [Item.new('Conjured', 0, 10)]
+        GildedRose.new(items).update_quality
+        expect(items[0].quality).to eq 6
+      end
+
+      it 'has a minimum value of 0' do
+        items = [Item.new('Conjured', 0, 10)]
+        6.times { GildedRose.new(items).update_quality }
+        expect(items[0].quality).to eq 0
       end
     end
   end
