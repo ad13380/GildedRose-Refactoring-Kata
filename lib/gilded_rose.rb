@@ -51,20 +51,6 @@ class GildedRose
   #   item.sell_in -= 1
   # end
 
-  def item_model(item)
-    if item.name.include?('Sulfuras') 
-      Sulfuras
-    elsif item.name.include?('Aged Brie')
-      Brie
-    elsif item.name.include?('Backstage')
-      Backstage
-    elsif item.name.include?('Conjured')
-      Conjured
-    else
-      Regular
-    end
-  end
-
   def update_quality()
     @items.each(&:update)
 
@@ -126,5 +112,21 @@ class GildedRose
       #   end
       # end
     #end
+  end
+
+  private 
+
+  def item_model(item)
+    if item.name.include?('Sulfuras') 
+      Sulfuras
+    elsif item.name.include?('Aged Brie')
+      Brie
+    elsif item.name.include?('Backstage')
+      Backstage
+    elsif item.name.include?('Conjured')
+      Conjured
+    else
+      Regular
+    end
   end
 end
