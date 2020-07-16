@@ -50,6 +50,7 @@ Run ```rspec``` in your terminal
 bundle exec rspec
 ```
 All tests should be green with full test coverage as shown
+
 <img src="./images/rspec.png" width="400">
 
 ## Dependencies
