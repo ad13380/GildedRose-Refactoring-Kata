@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
 require_relative 'item'
+require_relative 'item_module'
 
 class Sulfuras < Item
+  include Item_methods
+
   def update
-    @quality = 50 if @quality > 50
-    @quality = 0 if @quality < 0
+    enforce_quality_boundaries
   end
 end

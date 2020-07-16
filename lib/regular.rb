@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
 require_relative 'item'
+require_relative 'item_module'
 
 class Regular < Item
+  include Item_methods
+
   def update
     @sell_in > 0 ? @quality -= 1 : @quality -= 2
-    @quality = 50 if @quality > 50
-    @quality = 0 if @quality < 0
-    @sell_in -= 1
+    enforce_quality_boundaries
+    update_sell_in
   end
 end
