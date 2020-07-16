@@ -72,7 +72,7 @@ Development:
   - They inhereted functionality from the generic ```Item``` class
   - They included methods from an ```ItemMethods``` module that included frequently used methods such as decrementing the ```sell_in``` value and ensuring the ```quality``` value was never negative (ideally these methods would have been put into the Item class, but it was a requirement that the Item class not be modified)
 10. Separated the tests in the ```guilded_rose_spec.rb``` file into separate test files for each type of item
-11. Added feature tests for creating and updating an entire list of items within a ```GildedRose``` instance
+11. Added feature tests for creating and updating an entire list of items within a ```GildedRose``` instance, which passed
 ### Item Properties
 #### Sulfuras (Legendary Item)
 ```
