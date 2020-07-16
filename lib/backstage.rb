@@ -11,7 +11,7 @@ class Backstage < Item
       @quality += 1
     elsif @sell_in > 5
       @quality += 2
-    elsif @sell_in > 0 
+    elsif @sell_in.positive?
       @quality += 3
     else
       @quality = 0

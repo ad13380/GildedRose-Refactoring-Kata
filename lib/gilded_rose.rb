@@ -11,7 +11,7 @@ class GildedRose
     @items = items.map! { |item| item_model(item).new(item.name, item.sell_in, item.quality) }
   end
 
-  def update_quality()
+  def update_quality
     @items.each(&:update)
   end
 
