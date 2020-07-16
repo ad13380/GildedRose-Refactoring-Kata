@@ -8,17 +8,19 @@ require_relative 'sulfuras'
 
 class GildedRose
   def initialize(items)
-    @items = items.map! { |item| item_model(item).new(item.name, item.sell_in, item.quality) }
+    @items = items.map! do |item|
+      item_model(item).new(item.name, item.sell_in, item.quality)
+    end
   end
 
   def update_quality
     @items.each(&:update)
   end
 
-  private 
+  private
 
   def item_model(item)
-    if item.name.include?('Sulfuras') 
+    if item.name.include?('Sulfuras')
       Sulfuras
     elsif item.name.include?('Aged Brie')
       Brie

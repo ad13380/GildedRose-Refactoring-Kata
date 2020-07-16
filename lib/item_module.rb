@@ -1,4 +1,6 @@
-module Item_methods
+# frozen_string_literal: true
+
+module ItemMethods
   def update_sell_in
     @sell_in -= 1
   end

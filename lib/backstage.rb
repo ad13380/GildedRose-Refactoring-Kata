@@ -4,7 +4,7 @@ require_relative 'item'
 require_relative 'item_module'
 
 class Backstage < Item
-  include Item_methods
+  include ItemMethods
 
   def update
     if @sell_in > 10
