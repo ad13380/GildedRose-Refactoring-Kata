@@ -69,9 +69,9 @@ Development:
 7. Moved each item's update method into its own separate class 
 8. Modified ```gilded_rose.rb``` code such that each item would be an instance of it's correspoonding item class, as opposed to an instance of the generic ```Item``` class
 9. After noticing a lot of similarity in the code written for each type of item class, the classes were refactored such that:
-  - They inhereted functionality from the generic ```Item``` class
-  - They included methods from an ```ItemMethods``` module that included frequently used methods such as decrementing the ```sell_in``` value and ensuring the ```quality``` value was never negative (ideally these methods would have been put into the Item class, but it was a requirement that the Item class not be modified)
-10. Separated the tests in the ```guilded_rose_spec.rb``` file into separate test files for each type of item
+    - They inhereted functionality from the generic ```Item``` class
+    - They included methods from an ```ItemMethods``` module that included frequently used methods such as decrementing the ```sell_in``` value and ensuring the ```quality``` value was never negative (ideally these methods would have been put into the Item class, but it was a requirement that the Item class not be modified)
+10. Separated the tests in the ```gilded_rose_spec.rb``` file into separate test files for each type of item
 11. Added feature tests for creating and updating an entire list of items within a ```GildedRose``` instance, which passed
 ### Item Properties
 #### Sulfuras (Legendary Item)
