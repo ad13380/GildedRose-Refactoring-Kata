@@ -2,11 +2,11 @@
 
 module ItemMethods
   def update_sell_in
-    @sell_in -= 1
+    @sell_in -= GildedRose::SELL_IN_DECREMENT
   end
 
   def enforce_quality_boundaries
-    @quality = 50 if @quality > 50
-    @quality = 0 if @quality < 0
+    @quality = GildedRose::MAXIMUM_QUALITY if @quality > GildedRose::MAXIMUM_QUALITY
+    @quality = GildedRose::MINIMUM_QUALITY if @quality < GildedRose::MINIMUM_QUALITY
   end
 end

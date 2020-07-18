@@ -9,6 +9,8 @@ require_relative 'sulfuras'
 class GildedRose
   SELL_IN_DECREMENT = 1
   QUALITY_UPDATE_VALUE = 1
+  MINIMUM_QUALITY = 0
+  MAXIMUM_QUALITY = 50
 
   def initialize(items)
     @items = items.map! do |item|
