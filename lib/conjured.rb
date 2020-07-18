@@ -7,7 +7,7 @@ class Conjured < Item
   include ItemMethods
 
   def update
-    @sell_in.positive? ? @quality -= 2 : @quality -= 4
+    @sell_in.positive? ? @quality -= 2 * GildedRose::QUALITY_UPDATE_VALUE : @quality -= 4 * GildedRose::QUALITY_UPDATE_VALUE
     enforce_quality_boundaries
     update_sell_in
   end

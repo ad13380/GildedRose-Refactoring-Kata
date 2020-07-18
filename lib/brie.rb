@@ -7,7 +7,7 @@ class Brie < Item
   include ItemMethods
 
   def update
-    @sell_in.positive? ? @quality += 1 : @quality += 2
+    @sell_in.positive? ? @quality += GildedRose::QUALITY_UPDATE_VALUE : @quality += 2 * GildedRose::QUALITY_UPDATE_VALUE
     enforce_quality_boundaries
     update_sell_in
   end

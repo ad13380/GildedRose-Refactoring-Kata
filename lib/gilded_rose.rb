@@ -7,6 +7,9 @@ require_relative 'regular'
 require_relative 'sulfuras'
 
 class GildedRose
+  SELL_IN_DECREMENT = 1
+  QUALITY_UPDATE_VALUE = 1
+
   def initialize(items)
     @items = items.map! do |item|
       item_model(item).new(item.name, item.sell_in, item.quality)

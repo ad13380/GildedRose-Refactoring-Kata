@@ -8,11 +8,11 @@ class Backstage < Item
 
   def update
     if @sell_in > 10
-      @quality += 1
+      @quality += GildedRose::QUALITY_UPDATE_VALUE
     elsif @sell_in > 5
-      @quality += 2
+      @quality += 2 * GildedRose::QUALITY_UPDATE_VALUE
     elsif @sell_in.positive?
-      @quality += 3
+      @quality += 3 * GildedRose::QUALITY_UPDATE_VALUE
     else
       @quality = 0
     end
